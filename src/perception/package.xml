@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package format="3">
+
+  <!-- General informations -->
+  <name>perception</name>
+  <version>0.0.0</version>
+  <description>The perception package containing the various nodes required to handle the project's vision pipeline.</description>
+
+  <!-- Maintainer and authors -->
+  <maintainer email="nicolas.erbetti.k@gmail.com">Nicolas Erbetti</maintainer>
+  <author email="nicolas.erbetti.k@gmail.com">Nicolas Erbetti</author>
+  <!-- License -->
+  <license>copyright: (C) 2025 Nicolas Erbetti. All rights reserved.</license>
+  <!-- Website -->
+  <url type="Github repository of the root directory.">https://github.com/nico-kuroxy/ros2_lab_ws</url>
+
+  <!-- Build dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+  <!-- Test dependencies -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <!-- Ros dependencies -->
+  <depend>apriltag</depend>
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>  
+  <!-- Custom dependencies that needs to be build before this package. -->
+  <depend>library</depend>
+  <depend>interfaces</depend>
+  <!-- Messages, services, actions, dynamic reconfigure dependencies -->
+  <!-- <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group> -->
+
+</package>

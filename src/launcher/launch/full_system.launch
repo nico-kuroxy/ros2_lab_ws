@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<!-- Launchfile to run the full_system of the laboratory project while loading the parameters on the rosparam server. -->
+
+<launch>
+
+    <!-- Load arguments. -->
+    <arg name="logs" default="screen"/> <!-- Determines whether or not to register the output of the ros nodes in their log files ("log") or on the screen ("screen"). -->
+    <arg name="respawn" default="false"/> <!-- Determines whether or not the nodes should restart upon dying. -->
+
+    <!-- Create the group with the namespace. -->
+    <group>
+        
+        <!-- Push the namespace to all included files of the group. -->
+        <push-ros-namespace namespace="lab"/>
+
+        <!-- Start all communication nodes. -->
+        <include file="$(find-pkg-share launcher)/launch/full_communication.launch.py">
+            <arg name="logs" value="$(var logs)"/> <!-- Pass the log argument. -->
+            <arg name="respawn" value="$(var respawn)"/> <!-- Pass the respawn argument. -->
+        </include>
+
+        <!-- Start all perception nodes. -->
+        <include file="$(find-pkg-share launcher)/launch/full_perception.launch">
+            <arg name="logs" value="$(var logs)"/> <!-- Pass the log argument. -->
+            <arg name="respawn" value="$(var respawn)"/> <!-- Pass the respawn argument. -->
+        </include>
+
+        <!-- Start all simulation nodes. -->
+        <include file="$(find-pkg-share launcher)/launch/full_simulation.launch">
+            <arg name="logs" value="$(var logs)"/> <!-- Pass the log argument. -->
+            <arg name="respawn" value="$(var respawn)"/> <!-- Pass the respawn argument. -->
+        </include>
+
+    </group>
+
+</launch>

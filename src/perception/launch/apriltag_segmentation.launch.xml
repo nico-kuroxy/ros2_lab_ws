@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Launchfile to run the april segmentation node while loading the parameters on the rosparam server. -->
+
+<launch>
+
+    <!-- Load arguments -->
+    <arg name="node_1_name" default="apriltag_segmentation"/>
+    <arg name="use_rqt" default="false"/>
+    <arg name="use_rviz" default="false"/>
+
+    <!-- Load environment variables. -->
+    <!-- NA -->
+
+    <!-- The segmentation node for the back camera. -->
+    <node pkg="perception" exec="apriltag_segmentation" name="$(var node_1_name)" args="" respawn="false" output="screen">
+        <!-- Loading the parameters on the node. -->
+        <param from="$(find-pkg-share perception)/config/apriltag_segmentation.yaml"/>
+        <!-- Remapping the input topic. -->
+        <remap from="input_frame" to="/lab/driver_camera_back/color/image_raw/compressed"/>
+    </node>
+
+    <!-- Launch rqt with the node's perspective file. -->
+    <node pkg="rqt_gui" exec="rqt_gui" name="rqt" output="screen" args="--perspective-file $(find-pkg-share perception)/config/apriltag_segmentation.perspective" if="$(var use_rqt)"/>
+
+    <!-- Launch rviz with the node's rviz file. -->
+    <node pkg="rviz2" exec="rviz2" name="rviz" output="screen" args="-d $(find-pkg-share perception)/config/apriltag_segmentation.rviz" if="$(var use_rviz)"/>
+
+</launch>

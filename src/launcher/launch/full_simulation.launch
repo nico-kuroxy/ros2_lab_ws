@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!-- Launchfile to start every node of the simulation stack. -->
+
+<launch>
+
+    <!-- Load arguments (including those passed through full system). -->
+    <arg name="logs" default="screen"/>
+    <arg name="respawn" default="false"/>
+
+    <!--Gazebo 11 simulation. -->
+    <include file="$(find-pkg-share turtlebot3_gazebo_custom)/launch/turtlebot3_world.launch.py">
+        <arg name="logs" value="$(var logs)"/> <!-- Pass the log argument. -->
+        <arg name="respawn" value="$(var respawn)"/> <!-- Pass the respawn argument. -->
+    </include>
+
+</launch>

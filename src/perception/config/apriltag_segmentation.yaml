@@ -1,0 +1,44 @@
+# # # Configuration file for the parameters of the perception package.
+
+##############################################################################################################################################
+# For the apriltag segmentation node :
+apriltag_segmentation:
+
+  # ROS2 dedicated tag.
+  ros__parameters:
+
+    ##############################################################################################################################################
+    # # # Generic parameters.
+
+    # Update rate (in Hertz) of the main running loop of the node.
+    run_rate: 10.0
+    # Whether or not the node should be enabled automatically upon startup.
+    auto_enable: true
+    # Whether or not we publish and/or print debug messages.
+    debug: true
+
+    ##############################################################################################################################################
+    # # # Image processing pipeline parameters.
+
+    # The name of the camera used to process the pictures. Should be either camera_back or camera_front.
+    camera_name: "camera_back"
+    # Camera position : -1 is for the back camera, +1 is for the front camera.
+    camera_position: -1
+    # The lateral offset (in cm) between the camera's optical center and the robot.
+    camera_offset: 0.025
+
+    ##############################################################################################################################################
+    # # # Apriltag features extraction parameters.
+
+    # The size of the tag itself, in meters, as defined by the documentation: https://github.com/AprilRobotics/apriltag.
+    tag_size: 0.10
+    # The number of threads used for the april tag detection.
+    nthreads: 1
+    # Whether or not we should refine the edges.
+    refine_edges: true
+    # The covariance of the gaussian blur applied to the image.
+    quad_sigma: 0.0
+    # The image decimation factor.
+    quad_decimate: 1.01
+
+##############################################################################################################################################

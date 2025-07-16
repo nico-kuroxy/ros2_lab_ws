@@ -1,0 +1,7 @@
+# EnableNode.srv is a service made to enable or disable the node hosting it. 
+# Define the request.
+bool enable # Whether or not we want the node to be running.
+---
+# Define the response.
+bool success # Whether or not the request was a success.
+string response # More information regarding the result of the request.
