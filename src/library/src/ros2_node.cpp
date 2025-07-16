@@ -279,7 +279,7 @@ template int Ros2Node::retrieveRosParameter<int>(std::unordered_map<std::string,
 template int Ros2Node::retrieveRosParameter<float>(std::unordered_map<std::string, std::shared_ptr<Ros2ParameterInterface>>& _ros_parameters, const std::string _name_parameter, float* _attribute_ptr, std::optional<float> _min_value, std::optional<float> _max_value);  // NOLINT
 template int Ros2Node::retrieveRosParameter<double>(std::unordered_map<std::string, std::shared_ptr<Ros2ParameterInterface>>& _ros_parameters, const std::string _name_parameter, double* _attribute_ptr, std::optional<double> _min_value, std::optional<double> _max_value);  // NOLINTNT
 template int Ros2Node::retrieveRosParameter<std::string>(std::unordered_map<std::string, std::shared_ptr<Ros2ParameterInterface>>& _ros_parameters, const std::string _name_parameter, std::string* _attribute_ptr, std::optional<std::string> _min_value, std::optional<std::string> _max_value);  // NOLINTNT
-//> 1st overload of the retrieve function.
+//> 1st overload of the getValue function.
 template bool Ros2Node::getValue<bool>(const std::shared_ptr<Ros2ParameterInterface>& _parameter);  // NOLINT
 template int Ros2Node::getValue<int>(const std::shared_ptr<Ros2ParameterInterface>& _parameter);  // NOLINT
 template float Ros2Node::getValue<float>(const std::shared_ptr<Ros2ParameterInterface>& _parameter);  // NOLINT

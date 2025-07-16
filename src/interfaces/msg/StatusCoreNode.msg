@@ -8,4 +8,4 @@ builtin_interfaces/Time date_enabled # The date at which the node was enabled. E
 builtin_interfaces/Duration runtime # The duration between now and the last time the node was enabled. Empty if disabled.
 builtin_interfaces/Duration execution_time # The duration of each iteration of the node's main loop.
 # Fields related to other aspects of the node.
-bool is_debug_enabled # Whether or not the debug mode of the mode is enabled.
+bool is_debug_enabled # Whether or not the debug mode of the node is enabled.
