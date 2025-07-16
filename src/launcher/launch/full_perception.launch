@@ -14,8 +14,8 @@
         <!-- Loading the parameters on the node. -->
         <param from="$(find-pkg-share launcher)/config/full_config.yaml"/>
         <!-- Remapping the input topics. -->
-        <remap from="input_frame" to="/camera/image_raw"/>
-        <remap from="camera_info" to="/camera/camera_info"/>
+        <remap from="input_frame" to="/TB3_1/camera/image_raw"/>
+        <remap from="camera_info" to="/TB3_1/camera/camera_info"/>
     </node>
 
     <!-- YOLO AI inference nodes. -->

@@ -50,15 +50,15 @@
       </include>
     </model>
 
-    <model name="apriltag1">
+    <model name="apriltag0">
       <static>1</static>
       <include>
         <uri>model://Apriltag36_11_00000</uri>
-        <pose>-0.15 0 0.25 0 1.57 0</pose>
+        <pose>0 -0.15 0.25 1.57 -1.57 0</pose>
       </include>
     </model>
 
-    <model name="apriltag2">
+    <model name="apriltag1">
       <static>1</static>
       <include>
         <uri>model://Apriltag36_11_00001</uri>
@@ -66,7 +66,7 @@
       </include>
     </model>
 
-    <model name="apriltag3">
+    <model name="apriltag2">
       <static>1</static>
       <include>
         <uri>model://Apriltag36_11_00002</uri>
@@ -74,11 +74,11 @@
       </include>
     </model>
 
-    <model name="apriltag4">
+    <model name="apriltag3">
       <static>1</static>
       <include>
         <uri>model://Apriltag36_11_00003</uri>
-        <pose>0 -0.15 0.25 1.57 -1.57 0</pose>
+        <pose>-0.15 0 0.25 0 1.57 0</pose>
       </include>
     </model>
 

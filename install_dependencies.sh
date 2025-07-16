@@ -49,11 +49,11 @@ cloudflared tunnel login
 
 # Defint the ros distro to be sourced in every terminal.
 echo 'source /opt/ros/humble/local_setup.bash' >> ~/.bashrc
-echo 'source /home/nicolas/personal-website/server/ros2_ws/install/local_setup.bash' >> ~/.bashrc
+echo 'source /home/nicolas/personal-website/server/ros2_lab_ws/install/local_setup.bash' >> ~/.bashrc
 # Define the turtlebot model used in the simulation.
 echo 'export TURTLEBOT3_MODEL=burger_cam' >> ~/.bashrc
 echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_gazebo/models' >> ~/.bashrc
-echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/nicolas/personal-website/server/ros2_ws/src/simulation/gazebo_apriltag/models' >> ~/.bashrc
+echo 'export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/nicolas/personal-website/server/ros2_lab_ws/src/simulation/gazebo_apriltag/models' >> ~/.bashrc
 echo 'export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/opt/ros/humble/lib' >> ~/.bashrc
 echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
 echo 'source /usr/share/gazebo-11/setup.sh' >> ~/.bashrc

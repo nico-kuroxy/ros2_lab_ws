@@ -38,26 +38,26 @@ def generate_launch_description():
     pose = [[-2, -0.5], [0.5, -2], [2, 0.5], [-0.5, 2]]
     model_folder = 'turtlebot3_' + TURTLEBOT3_MODEL
     urdf_path = os.path.join(
-        get_package_share_directory('turtlebot3_gazebo'),
+        get_package_share_directory('turtlebot3_gazebo_custom'),
         'models',
         model_folder,
         'model.sdf'
     )
     save_path = os.path.join(
-        get_package_share_directory('turtlebot3_gazebo'),
+        get_package_share_directory('turtlebot3_gazebo_custom'),
         'models',
         model_folder,
         'tmp'
     )
-    launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
+    launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gazebo_custom'), 'launch')
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
     world = os.path.join(
-        get_package_share_directory('turtlebot3_gazebo'),
+        get_package_share_directory('turtlebot3_gazebo_custom'),
         'worlds',
-        'turtlebot3_world.world'
+        'turtlebot3_vision_world.world'
     )
 
     gzserver_cmd = IncludeLaunchDescription(
