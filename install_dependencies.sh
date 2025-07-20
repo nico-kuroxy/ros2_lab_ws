@@ -30,7 +30,7 @@ sudo apt install -y \
   ros-humble-apriltag-ros ros-humble-apriltag ros-humble-cv-bridge \
   python3-colcon-common-extensions \
   python3-pip \
-  python3-opencv
+  python3-opencv python3-numpy
 
 # Install the AI python packages. (May need to adapt the version of Cuda based on the GPU drivers).
 python3 -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
