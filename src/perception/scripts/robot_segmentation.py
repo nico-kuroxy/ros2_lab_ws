@@ -26,7 +26,6 @@ import numpy as np
 import torch
 import threading
 # Dedicated ros2 libraries
-import cv_bridge
 import rclpy
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 from rclpy.node import Node
@@ -73,7 +72,6 @@ class RobotSegmentation(Node):
         super().__init__(_node_name)
         # Initialize the dynamic attributes.
         self._is_new_input_available = False
-        self._bridge_cv = cv_bridge.CvBridge()
         self._input_img_cv = np.array(np.zeros((0, 0, 3), dtype=np.uint8))
         self._segmented_img_cv = np.array(np.zeros((0, 0, 3), dtype=np.uint8))
         # Initialize the ros parameters attributes.

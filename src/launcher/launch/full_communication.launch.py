@@ -22,7 +22,7 @@ def generate_launch_description():
 
     # Setup the cloudflare tunnel.
     cloudflared_tunnel = ExecuteProcess(
-        cmd=['cloudflared', 'tunnel', 'run', 'ubuntu'],
+        cmd=['cloudflared', 'tunnel', 'run', 'laboratory'],
         output='screen'
     )
 
