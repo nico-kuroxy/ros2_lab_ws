@@ -1,0 +1,33 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#   author: nicolas.erbetti.k@gmail.com
+#   brief: This file defines the configuration of the dataset and the model for the training of instance segmentation
+#          As defined here: https://docs.ultralytics.com/fr/datasets/segment/#ultralytics-yolo-format 
+#   copyright: Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# DATASET
+# Dataset root directory
+path: /home/nicolas/personal-website/server/ros2_lab_ws/src/ai/data/online_lab_2/images
+# Training images (relative to path)
+train: train
+# Validation images (relative to path)
+val: validate
+# Test images (relative to path) (optional)
+test: test
+# Download script/URL (optional)
+# download: https://github.com/ultralytics/assets/releases/download/v0.0.0/coco8-seg.zip
+# Task of the trained model.
+task: segment
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# CLASSES
+# Number of class.
+nc: 1
+# Name of each class.
+names:
+  0: tb3
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

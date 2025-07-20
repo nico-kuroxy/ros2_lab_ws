@@ -30,6 +30,10 @@ sudo apt install -y \
   python3-colcon-common-extensions \
   python3-pip
 
+# Install the AI python packages. (May need to adapt the version of Cuda based on the GPU drivers).
+python3 -m pip install ultralytics
+python3 -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
 ################################
 # CLOUDFLARE SETUP ########
 ################################

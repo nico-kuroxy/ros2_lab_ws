@@ -9,7 +9,7 @@
     <arg name="respawn" default="false"/>
 
     <!-- APRILTAG detection nodes. -->
-    <!-- The apriltag segmentation node for the back camera. -->
+    <!-- The apriltag segmentation node for the camera. -->
     <node pkg="perception" exec="apriltag_segmentation" name="apriltag_segmentation" args="" respawn="$(var respawn)" output="$(var logs)">
         <!-- Loading the parameters on the node. -->
         <param from="$(find-pkg-share launcher)/config/full_config.yaml"/>
@@ -20,13 +20,11 @@
 
     <!-- YOLO AI inference nodes. -->
     <!-- The robot segmentation node. -->
-    <!-- <node pkg="perception" exec="robot_segmentation.py" name="robot_segmentation" args="" respawn="$(var respawn)" output="$(var logs)"> -->
+    <node pkg="perception" exec="robot_segmentation.py" name="robot_segmentation" args="" respawn="$(var respawn)" output="$(var logs)">
         <!-- Loading the parameters on the node. -->
-        <!-- <param from="$(env DEVICE_FOLDER)/config/configuration_files/config.yaml"/> -->
+        <param from="$(find-pkg-share launcher)/config/full_config.yaml"/>
         <!-- Remapping the input topics. -->
-        <!-- <remap from="input_frame" to="driver_camera_back/color/image_raw/compressed"/>
-        <remap from="camera_info" to="driver_camera_back/aligned_depth_to_color/camera_info"/>
-        <remap from="depth_frame" to="driver_camera_back/aligned_depth_to_color/image_raw"/>
-    </node> -->
+        <remap from="input_frame" to="/lab/apriltag_segmentation/apriltag_frame"/>
+    </node>
 
 </launch>

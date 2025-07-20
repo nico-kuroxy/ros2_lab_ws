@@ -83,11 +83,11 @@ install(
 # Install the python nodes.
 #-----------------------------------------------------------------------------
 
-# install(
-#   PROGRAMS
-#     scripts/robot_segmentation.py
-#   DESTINATION lib/${PROJECT_NAME}
-# )
+install(
+  PROGRAMS
+    scripts/robot_segmentation.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 #-----------------------------------------------------------------------------
 # Install launch files

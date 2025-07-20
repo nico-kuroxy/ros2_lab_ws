@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Launchfile to run the robot segmentation nodes while loading the parameters on the rosparam server. -->
+
+<launch>
+
+    <!-- Load arguments -->
+    <arg name="node_1_name" default="robot_segmentation"/>
+    <arg name="use_rqt" default="false"/>
+    <arg name="use_rviz" default="false"/>
+    <arg name="use_rosbridge" default="false"/>
+
+    <!-- Load environment variables. -->
+    <!-- NA -->
+        
+    <!-- The segmentation node. -->
+    <node pkg="perception" exec="robot_segmentation.py" name="$(var node_1_name)" args="" respawn="false" output="screen">
+        <!-- Loading the parameters on the node. -->
+        <param from="$(find-pkg-share perception)/config/robot_segmentation.yaml"/>
+        <!-- Remapping the input topics. -->
+        <remap from="input_frame" to="/lab/driver_camera_back/color/image_raw/compressed"/>
+    </node>
+
+    <!-- Launch rqt with the node's perspective file. -->
+    <node pkg="rqt_gui" exec="rqt_gui" name="rqt" output="screen" args="--perspective-file $(find-pkg-share perception)/config/robot_segmentation.perspective" if="$(var use_rqt)"/>
+
+    <!-- Launch rviz with the node's rviz file. -->
+    <node pkg="rviz2" exec="rviz2" name="rviz" output="screen" args="-d $(find-pkg-share perception)/config/robot_segmentation.rviz" if="$(var use_rviz)"/>
+
+    <!-- Rosbridge server web nexus, with port 9090 for the ROS2 side. -->
+    <include file="$(find-pkg-share rosbridge_server)/launch/rosbridge_websocket_launch.xml" if="$(var use_rosbridge)">
+        <arg name="port" value="9090"/> <!-- Pass the port argument. -->
+    </include>
+
+</launch>

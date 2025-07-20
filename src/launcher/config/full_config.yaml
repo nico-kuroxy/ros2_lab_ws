@@ -50,3 +50,31 @@
       quad_decimate: 1.0
 
   ##############################################################################################################################################
+
+  ##############################################################################################################################################
+  # For the robot segmentation node :
+  robot_segmentation:
+
+    # ROS2 dedicated tag.
+    ros__parameters:
+
+      ##############################################################################################################################################
+      # # # Generic parameters.
+
+      # Update rate (in Hertz) of the main running loop of the node.
+      run_rate: 20.0
+      # Whether or not the node should be enabled automatically upon startup.
+      auto_enable: true
+
+      ##############################################################################################################################################
+      # # # Image processing pipeline parameters.
+
+      ##############################################################################################################################################
+      # # # Yolo segmentation parameters.
+
+      # The absolute path to the pytorch file where the weights of the YOLO model are saved.
+      model_path: "/home/nicolas/personal-website/server/ros2_lab_ws/src/ai/models/best_n.pt"
+      # The confidence treshold which a segmentation needs to reach to validate the detection.
+      tb3_conf_threshold: 0.875
+
+  ##############################################################################################################################################

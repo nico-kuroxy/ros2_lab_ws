@@ -8,6 +8,7 @@
     <arg name="node_1_name" default="apriltag_segmentation"/>
     <arg name="use_rqt" default="false"/>
     <arg name="use_rviz" default="false"/>
+    <arg name="use_rosbridge" default="false"/>
 
     <!-- Load environment variables. -->
     <!-- NA -->
@@ -25,5 +26,10 @@
 
     <!-- Launch rviz with the node's rviz file. -->
     <node pkg="rviz2" exec="rviz2" name="rviz" output="screen" args="-d $(find-pkg-share perception)/config/apriltag_segmentation.rviz" if="$(var use_rviz)"/>
+
+    <!-- Rosbridge server web nexus for image visualization, with port 9090 for the ROS2 side. -->
+    <include file="$(find-pkg-share rosbridge_server)/launch/rosbridge_websocket_launch.xml" if="$(var use_rosbridge)">
+        <arg name="port" value="9090"/> <!-- Pass the port argument. -->
+    </include>
 
 </launch>

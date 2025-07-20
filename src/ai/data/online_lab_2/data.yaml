@@ -1,0 +1,4 @@
+names:
+  0: TB3
+path: .
+train: train.txt

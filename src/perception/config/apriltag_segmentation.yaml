@@ -14,8 +14,6 @@ apriltag_segmentation:
     run_rate: 10.0
     # Whether or not the node should be enabled automatically upon startup.
     auto_enable: true
-    # Whether or not we publish and/or print debug messages.
-    debug: true
 
     ##############################################################################################################################################
     # # # Image processing pipeline parameters.

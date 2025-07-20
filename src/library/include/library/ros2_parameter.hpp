@@ -158,24 +158,20 @@ int Ros2Parameter<T>::setValue(T _value) {
                 // If not, we return an error.
                 std::cout << "Invalid value. " << static_cast<double>(_value) << " needs be within [" << this->min_value_.value() << ", " << this->max_value_.value() << "]." << std::endl;
                 result = -1;
-                std::cout << "Value setted 1 " << *this->value_ << std::endl;
             } else {
             // If yes, we update the registered value..
                 *this->value_ = _value;
-                std::cout << "Value setted 2 " << *this->value_ << std::endl;
             }
         } else {
             // If there is no min or max value, we just update the registered value..
             *this->value_ = _value;
-            std::cout << "Value setted 3 " << *this->value_ << std::endl;
         }
     } else {
     // Otherwise, (for instance, for strings) we just update the registered value.
         *this->value_ = _value;
-        std::cout << "Value setted 4 " << *this->value_ << std::endl;
     }
-    std::cout << "Value set " << _value << std::endl;
-    std::cout << "Value setted " << *this->value_ << std::endl;
+    std::cout << "Variable set " << _value << std::endl;
+    std::cout << "Value set " << *this->value_ << std::endl;
     // Return.
     return result;
 }
