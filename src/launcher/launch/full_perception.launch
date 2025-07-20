@@ -14,7 +14,7 @@
         <!-- Loading the parameters on the node. -->
         <param from="$(find-pkg-share launcher)/config/full_config.yaml"/>
         <!-- Remapping the input topics. -->
-        <remap from="input_frame" to="/TB3_1/camera/image_raw"/>
+        <remap from="input_frame" to="/lab/robot_segmentation/segmented_frame"/>
         <remap from="camera_info" to="/TB3_1/camera/camera_info"/>
     </node>
 
@@ -24,7 +24,7 @@
         <!-- Loading the parameters on the node. -->
         <param from="$(find-pkg-share launcher)/config/full_config.yaml"/>
         <!-- Remapping the input topics. -->
-        <remap from="input_frame" to="/lab/apriltag_segmentation/apriltag_frame"/>
+        <remap from="input_frame" to="/TB3_1/camera/image_raw/compressed"/>
     </node>
 
 </launch>

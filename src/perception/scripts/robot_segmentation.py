@@ -26,11 +26,13 @@ import numpy as np
 import torch
 import threading
 # Dedicated ros2 libraries
-import rclpy
+from cv_bridge import CvBridge
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 from rclpy.node import Node
 from rcl_interfaces.msg import SetParametersResult
 from sensor_msgs.msg import CompressedImage
+from sensor_msgs.msg import Image
+import rclpy
 # Custom-made libraries.
 ##################################################################################################
 
@@ -71,6 +73,7 @@ class RobotSegmentation(Node):
         # Initialize the parent classes.
         super().__init__(_node_name)
         # Initialize the dynamic attributes.
+        self._cv_bridge = CvBridge()
         self._is_new_input_available = False
         self._input_img_cv = np.array(np.zeros((0, 0, 3), dtype=np.uint8))
         self._segmented_img_cv = np.array(np.zeros((0, 0, 3), dtype=np.uint8))
@@ -88,7 +91,7 @@ class RobotSegmentation(Node):
         self._yolo_model = YOLO(self.get_parameter("model_path").value, task="segment")
         # Initialize the messages.
         self._input_frame_msg = CompressedImage()
-        self._segmented_frame_msg = CompressedImage()
+        self._segmented_frame_msg = Image()
         # Initialize the quality of service.
         self._qos = QoSProfile(
             depth=1, # Only keeps the latest frame in its buffer.
@@ -96,7 +99,7 @@ class RobotSegmentation(Node):
             history=QoSHistoryPolicy.KEEP_LAST # ensures that you're only keeping the most recent depth number of messages.
         )
         # Initialize the publishers.
-        self._segmented_frame_pub = self.create_publisher(CompressedImage, "~/segmented_frame/compressed", self._qos)
+        self._segmented_frame_pub = self.create_publisher(Image, "~/segmented_frame", self._qos)
         # Initialize the subscribers.
         self._input_frame_sub = self.create_subscription(CompressedImage, "input_frame", self.process_input_frame_cb, self._qos)
         # Initialize the ros timers.
@@ -152,7 +155,7 @@ class RobotSegmentation(Node):
     ##################################################################################################
     # # SPECIFIC FUNCTIONS
 
-    def encode_uncompressed_image(self, img_cv: np.array) -> CompressedImage:
+    def encode_compressed_image(self, img_cv: np.array) -> CompressedImage:
         """!
         Encode the input uncompressed cv image to a ros image.
 
@@ -175,6 +178,27 @@ class RobotSegmentation(Node):
         img_msg.format = "jpeg"
         img_msg.data = bytes(memoryview(encoded_image))
         # Return the encoded CompressedImage.
+        return img_msg
+
+    def encode_uncompressed_image(self, img_cv: np.ndarray) -> Image:
+        """
+        Convert OpenCV image to ROS Image message.
+
+        Args:
+            img_cv (np.ndarray): The image to convert.
+
+        Returns:
+            Image: ROS Image message.
+        """
+        # Safeguard.
+        if img_cv.shape[0] == 0 or img_cv.shape[1] == 0:
+            # Return an empty message if input image is invalid
+            return Image()  
+        # Fill the message.
+        img_msg = self._cv_bridge.cv2_to_imgmsg(img_cv, encoding="bgr8")
+        img_msg.header.stamp = self.get_clock().now().to_msg()
+        img_msg.header.frame_id = "segmentation_frame"
+        # Return the message.
         return img_msg
 
     def decode_compressed_image(self, img_msg: CompressedImage) -> np.array:

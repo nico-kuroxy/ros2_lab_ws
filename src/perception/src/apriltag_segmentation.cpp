@@ -15,7 +15,8 @@
 //> CONSTRUCTORS
 ApriltagSegmentation::ApriltagSegmentation(std::string _node_name) :
     // Member assignment list : initializing node handle and attributes which depends on it.
-    ImageSegmentation(_node_name) {
+    ImageSegmentation(_node_name),
+    qos_profile_(1) {
     //> INITIALIZING EVERY ATTRIBUTE.
     // Initialize the dynamic attributes.
     this->tag_info_ = new apriltag_detection_info_t();
@@ -35,6 +36,9 @@ ApriltagSegmentation::ApriltagSegmentation(std::string _node_name) :
     // Initialize the attributes depending on ros parameters.
     // Initialize the messages.
     // Handled in the enableNode() function.
+    // Initialize the QoS.
+    this->qos_profile_.reliability(rclcpp::ReliabilityPolicy::BestEffort);
+    this->qos_profile_.history(rclcpp::HistoryPolicy::KeepLast);
     // Initialize the publishers.
     this->status_pub_ =
       this->create_publisher<interfaces::msg::StatusApriltagSegmentation>("~/status", 10);
@@ -150,10 +154,10 @@ int ApriltagSegmentation::enableNode(bool _is_node_enabled) {
             this->camera_pose_pub_ =
                 this->create_publisher<geometry_msgs::msg::PoseStamped>("~/apriltag_pose", 1);
             this->output_frame_pub_ =
-                this->create_publisher<sensor_msgs::msg::CompressedImage>("~/apriltag_frame", 1);
+                this->create_publisher<sensor_msgs::msg::CompressedImage>("~/apriltag_frame/compressed", 1);
             // Subscribe every subscriber.
             this->input_frame_sub_ =
-                this->create_subscription<sensor_msgs::msg::Image>("input_frame", 1,
+                this->create_subscription<sensor_msgs::msg::Image>("input_frame", this->qos_profile_,
                 std::bind(&ApriltagSegmentation::processInputFrameCb, this, std::placeholders::_1));
             this->camera_info_sub_ =
                 this->create_subscription<sensor_msgs::msg::CameraInfo>("camera_info", 1,

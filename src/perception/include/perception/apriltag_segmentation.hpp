@@ -126,6 +126,9 @@ class ApriltagSegmentation : public ImageSegmentation {
     //> MESSAGES
     /* The message holding the latest relative pose computed by the april tag detector. */
     geometry_msgs::msg::PoseStamped camera_pose_msg_;
+    //> QOS
+    /* The structure holding the QoS used by the Ros subscribers. */
+    rclcpp::QoS qos_profile_;
     //> PUBLISHERS
     /* Publish the status of the node, including the number of bags runnings, their names, their topics. */
     rclcpp::Publisher<interfaces::msg::StatusApriltagSegmentation>::SharedPtr status_pub_;
